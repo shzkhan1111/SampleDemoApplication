@@ -1,24 +1,17 @@
-﻿@if (!string.IsNullOrEmpty(CaptionHeader) && isVisible)
+﻿@if (!string.IsNullOrEmpty(CaptionHeader) && showCaption)
 {
     <h2>@CaptionHeader</h2>
 }
-else
-{
-    <p>&nbsp;</p>
-}
+
 
 @code {
-    //[Parameter]
-    //public string CaptionHeader { get; set; }
-
-    //[Parameter]
-    //public bool isVisible { get; set; }
+    
 
     [CascadingParameter(Name = "CaptionHeader")]
     public string CaptionHeader { get; set; }
 
-    [CascadingParameter(Name = "isVisible")]
-    public bool isVisible { get; set; }
+    [Parameter]
+    public bool showCaption { get; set; }
 
     
 }

@@ -1,13 +1,20 @@
 ﻿@*section*@
 
 @page "/caption"
-@*header*@
-@*<Caption_PanelComponent CaptionHeader="Header 1" isVisible="true"></Caption_PanelComponent>*@
-<div style="border:solid;border-color:blue;padding:2em">
-    <Caption_PanelComponent></Caption_PanelComponent>
-    
+
+<div style="border:solid;border-color:blue;margin:1em">
+    <p>
+        <label>
+            <input type="checkbox"
+                   @bind-value="showCaption" />
+            Show Caption
+        </label>
+    </p>
+    <br />
+    <Caption_PanelComponent showCaption="@showCaption" ></Caption_PanelComponent>
+
     <Caption_ContentComponent></Caption_ContentComponent>
 </div>
 @code {
-
+    private bool showCaption { get; set; }
 }
