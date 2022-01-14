@@ -1,0 +1,49 @@
+﻿@page "/"
+@page "/MainSection"
+
+<h3>MainComponent</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
+            <CascadingValue Name="CaptionHeader" Value="@header1">
+                <CascadingValue Name="isVisible" Value="@(true)" IsFixed="true">
+                    <CaptionComponent></CaptionComponent>
+                </CascadingValue>
+            </CascadingValue>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
+            <CascadingValue Name="CaptionHeader" Value="@header2">
+                <CascadingValue Name="isVisible" Value="@(true)" IsFixed="true">
+                    <CaptionComponent></CaptionComponent>
+                </CascadingValue>
+            </CascadingValue>
+        </div>
+
+
+        <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
+            <CascadingValue Name="CaptionHeader" Value="@header3">
+                <CascadingValue Name="isVisible" Value="@(true)" IsFixed="true">
+
+                    <CaptionComponent></CaptionComponent>
+                </CascadingValue>
+            </CascadingValue>
+        </div>
+    </div>
+</div>
+@code {
+
+    public string header1 { get; set; }
+    public string header2 { get; set; }
+    public string header3 { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        header1 = "Account";
+        header2 = "Timeline";
+        header3 = "Related";
+
+    }
+}

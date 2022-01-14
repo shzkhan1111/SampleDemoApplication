@@ -1,0 +1,44 @@
+﻿@*<h3>Caption_ContentComponent</h3>*@
+
+<div class="container">
+    @if (@users != null)
+    {
+        @foreach (User user in users)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    Appointment from @user.Name - @DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")
+                    <br />
+                    @user.Status
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    public List<User> users { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        users = new List<User>();
+        users.Add(new User { Id = 1, Name = "Jessie", Status = "Pending" });
+        users.Add(new User { Id = 2, Name = "James", Status = "Training" });
+        users.Add(new User { Id = 3, Name = "Kat", Status = "Confirmed" });
+        users.Add(new User { Id = 4, Name = "Bruce", Status = "Confirmed" });
+
+
+    }
+
+    public class User
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Status { get; set; }
+    }
+}
