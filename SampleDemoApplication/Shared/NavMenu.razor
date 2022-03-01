@@ -1,4 +1,8 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@inject sessionState state
+@inject NavigationManager mynav
+
+
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">SampleDemoApplication</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -7,34 +11,39 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="caption">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Caption
-            </NavLink>
-        </li>
+        @*<li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>*@
+        @*<li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </li>*@
+        @*<li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </li>*@
+        @*<li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </li>*@
+        @*<li class="nav-item px-3">
+                <NavLink class="nav-link" href="caption">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Caption
+                </NavLink>
+            </li>*@
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="MainSection">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Main Section
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onclick="Logout">
+                <span class="oi oi-power-standby" aria-hidden="true"></span> Logout
             </NavLink>
         </li>
     </ul>
@@ -43,11 +52,16 @@
 @code {
     private bool collapseNavMenu = true;
 
-    //private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private string NavMenuCssClass => "collapse" ;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    //private string NavMenuCssClass => "collapse" ;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    private void Logout()
+    {
+        state = null;
+        mynav.NavigateTo("/");
     }
 }

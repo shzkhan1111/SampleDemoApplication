@@ -1,29 +1,47 @@
-﻿@page "/"
+﻿
 @page "/MainSection"
+@inject sessionState state
+@inject NavigationManager NavigationManager
 
-<h3>MainComponent</h3>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
-            <CascadingValue Name="CaptionHeader" Value="@header1">
-                <SectionComponent></SectionComponent>
-            </CascadingValue>
-        </div>
+@if (state.userName != "" && state.userName != null)
+{
+    <h3>MainComponent</h3>
 
-        <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
-            <CascadingValue Name="CaptionHeader" Value="@header2">
-                <SectionComponent></SectionComponent>
-            </CascadingValue>
-        </div>
+    <div class="page">
 
-        <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
-            <CascadingValue Name="CaptionHeader" Value="@header3">
-                <SectionComponent></SectionComponent>
-            </CascadingValue>
+
+        <div class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
+                        <CascadingValue Name="CaptionHeader" Value="@header1">
+                            <SectionComponent></SectionComponent>
+                        </CascadingValue>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
+                        <CascadingValue Name="CaptionHeader" Value="@header2">
+                            <SectionComponent></SectionComponent>
+                        </CascadingValue>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-lg-4 col-xs-12">
+                        <CascadingValue Name="CaptionHeader" Value="@header3">
+                            <SectionComponent></SectionComponent>
+                        </CascadingValue>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+}
+@*else
+    {
+
+            NavigationManager.NavigateTo("Login", false);
+
+     }*@
 @code {
 
     public string header1 { get; set; }
@@ -32,10 +50,18 @@
 
     protected override void OnInitialized()
     {
+
         base.OnInitialized();
         header1 = "Account";
         header2 = "Timeline";
         header3 = "Related";
 
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (state.userName == null)
+        {
+            NavigationManager.NavigateTo("Login", true);
+        }
     }
 }
